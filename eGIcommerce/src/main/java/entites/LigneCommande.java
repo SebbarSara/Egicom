@@ -10,16 +10,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
 public class LigneCommande implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id; 
 	@ManyToOne 
-	@JoinColumn(name="id_produit")
+	@JoinColumn(name="idProduit")
 	private Produit produit;
+	private int quantite;
+	private double prix;
+	@ManyToOne 
+	@JoinColumn(name="idCommande")
+	private Commande commande;
 	public LigneCommande() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -55,7 +57,12 @@ public class LigneCommande implements Serializable {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	private int quantite;
-	private double prix;
+	public Commande getCommande() {
+		return commande;
+	}
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+	
 	
 }
