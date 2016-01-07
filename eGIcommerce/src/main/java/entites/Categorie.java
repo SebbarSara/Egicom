@@ -1,47 +1,27 @@
 package entites;
+ import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table
-public class Categorie {
+import org.hibernate.validator.constraints.NotEmpty;
+ @Entity
+ public class Categorie implements Serializable {
+	 @Id @GeneratedValue private Long idCategorie;
+	 @NotEmpty 
+	 @Size(min=4,max=20) 
+	 private String nomCategorie;
+	 private String description;
+	 private String nomPhoto;
+	 @Lob
+	 private byte[] photo;
+	 @OneToMany(mappedBy="categorie")
+	 private Collection<Produit> produits=new ArrayList<Produit>(); 
 	
-	@Id
-	@GeneratedValue
-	@Column
-	private int id_categorie;
-	
-	@Column
-	private String lib_categorie;
-	
-	@OneToMany( mappedBy= "categorie")
-	private List<Produit> produits;
-	public Categorie() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Categorie(String lib_categorie) {
-		super();
-		this.lib_categorie = lib_categorie;
-	}
-	public int getId_categorie() {
-		return id_categorie;
-	}
-	
-	public String getLib_categorie() {
-		return lib_categorie;
-	}
-	public void setLib_categorie(String lib_categorie) {
-		this.lib_categorie = lib_categorie;
-	}
-	
-	
-
-}
+ }

@@ -35,7 +35,7 @@ public class Commande {
 	private String etat;
 	
 	@ManyToOne
-	private User user;
+	private Client user;
 	@ManyToMany(mappedBy = "commandes")
 	private List<Produit> produis;
 	public Commande() {

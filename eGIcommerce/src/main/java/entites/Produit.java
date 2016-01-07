@@ -1,72 +1,40 @@
 package entites;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-
-@Entity
-@Table
-public class Produit {
-	
+ import java.io.Serializable;
+import javax.persistence.*;
+import org.hibernate.validator.constraints.NotEmpty; 
+ @Entity
+ public class Produit implements Serializable { 
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue
-	@Column
-	private int id_produit;
-	
-	@Column
-	private double prix;
-	
-	@Column
-	private int quantite;
-	
-	@Column
-	private String description;
-	
-	@Column
-	private String image_produit;
-	@ManyToMany(mappedBy = "produits")
-	private List<Commande> commades;
-	
-	@ManyToOne
-	private Marque marque;
-	
-	@ManyToOne
-	private Categorie categorie;
-	
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+	 private Long idProduit;
+	 @NotEmpty private String designation;
+	 private String description;
+	 private double prix;
+	 private String photo;
+	 private int quantite;
+	 private boolean selectionne;
+	 @ManyToOne @JoinColumn(name="ID_CAT")
+	 private Categorie categorie;
 	public Produit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produit(double prix, int quantite, String description,
-			String image_produit) {
-		super();
-		this.prix = prix;
-		this.quantite = quantite;
-		this.description = description;
-		this.image_produit = image_produit;
+	public Long getIdProduit() {
+		return idProduit;
 	}
-	public int getId_produit() {
-		return id_produit;
+	public void setIdProduit(Long idProduit) {
+		this.idProduit = idProduit;
 	}
-
-	public double getPrix() {
-		return prix;
+	public String getDesignation() {
+		return designation;
 	}
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
-	public int getQuantite() {
-		return quantite;
-	}
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	public String getDescription() {
 		return description;
@@ -74,13 +42,48 @@ public class Produit {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImage_produit() {
-		return image_produit;
+	public double getPrix() {
+		return prix;
 	}
-	public void setImage_produit(String image_produit) {
-		this.image_produit = image_produit;
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public int getQuantite() {
+		return quantite;
+	}
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+	public boolean isSelectionne() {
+		return selectionne;
+	}
+	public void setSelectionne(boolean selectionne) {
+		this.selectionne = selectionne;
+	}
+	public Categorie getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+	public Produit(Long idProduit, String designation, String description,
+			double prix, String photo, int quantite, boolean selectionne,
+			Categorie categorie) {
+		super();
+		this.idProduit = idProduit;
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.photo = photo;
+		this.quantite = quantite;
+		this.selectionne = selectionne;
+		this.categorie = categorie;
 	}
 	
-	
-
-}
+ }
