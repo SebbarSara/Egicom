@@ -22,6 +22,43 @@ import org.hibernate.validator.constraints.NotEmpty;
 	 @Lob
 	 private byte[] photo;
 	 @OneToMany(mappedBy="categorie")
-	 private Collection<Produit> produits=new ArrayList<Produit>(); 
+	 private Collection<Produit> produits=new ArrayList<Produit>();
+	public Long getIdCategorie() {
+		return idCategorie;
+	}
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+	public String getNomCategorie() {
+		return nomCategorie;
+	}
+	public void setNomCategorie(String nomCategorie) {
+		this.nomCategorie = nomCategorie;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getNomPhoto() {
+		return nomPhoto;
+	}
+	public void setNomPhoto(String nomPhoto) {
+		this.nomPhoto = nomPhoto;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	public Collection<Produit> getProduits() {
+		return produits;
+	}
+	public void setProduits(Collection<Produit> produits) {
+		this.produits = produits;
+	} 
+	 
 	
  }

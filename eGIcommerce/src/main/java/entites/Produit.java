@@ -4,6 +4,7 @@ package entites;
 import javax.persistence.*;
 import org.hibernate.validator.constraints.NotEmpty; 
  @Entity
+ @Table(name="produits")
  public class Produit implements Serializable { 
 	 /**
 	 * 
@@ -17,8 +18,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 	 private double prix;
 	 private String photo;
 	 private int quantite;
-	 private boolean selectionne;
-	 @ManyToOne @JoinColumn(name="ID_CAT")
+	 private boolean selected;
+	 @ManyToOne
+	 @JoinColumn(name="idCategorie")
 	 private Categorie categorie;
 	public Produit() {
 		super();
